@@ -5,3 +5,11 @@ services:
       - "2137:2137"
     env_file:
       - .env
+    networks:
+      - onlystudents
+  userio:
+    image: adamniesiobedzki/userio:latest
+    networks:
+      - onlystudents
+networks:
+  onlystudents:
