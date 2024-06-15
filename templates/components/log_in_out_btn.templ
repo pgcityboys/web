@@ -1,0 +1,47 @@
+package components;
+
+
+var handleBtn = templ.NewOnceHandle()
+
+templ log_in_out_btn() {
+    @handleBtn.Once(){
+    <script type="text/javascript">
+       function getUser() {
+        const userJSON = localStorage.getItem('user');
+        if (userJSON) {
+          try {
+            const user = JSON.parse(userJSON);
+            return user;
+          } catch (e) {
+            console.error('Error parsing user data:', e);
+          }
+        }
+        return null;
+      }
+
+      function logout(){
+        localStorage.removeItem("user");
+        location.reload();
+      }
+
+      function popUpLoginWindow() {
+        document.getElementById('popup').classList.add('active');
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const user = getUser();
+        const log_in_out_btn = document.getElementById('log_in_out_btn');
+        if (user) {
+            log_in_out_btn.innerHTML = `<button onclick='logout()'> Logout </button>`;
+        }
+        else{
+            log_in_out_btn.innerHTML = `<button onclick='popUpLoginWindow()'> Login </button>`;
+            log_in_out_btn.innerHTML = `<a onClick='logout()'> Logout </a>`;
+        }
+        else{
+            log_in_out_btn.innerHTML = `<a href='/login'> Login </a>`;
+        }
+      });
+    </script>
+  }
+}

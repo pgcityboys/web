@@ -1,0 +1,84 @@
+package templates;
+
+import (
+    "net/http"
+    "web/templates/components"
+)
+
+templ FriendsPage() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlyStudy</title>
+    <link rel="stylesheet" href="assets/navbar.css">
+    <link rel="stylesheet" href="assets/friends.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+	@components.Navbar()
+    <div class="container">
+        <div class="friend-view">
+            <div class="friend-info">
+                <p id="name"><b>Łukasz Nowakowski</b></p>
+                <i id="trophy-icon" class="fa fa-trophy" aria-hidden="true"></i>
+                <p id="score">65</p>
+            </div>
+            <div class="right-floated">
+                <p>Last login: 2024-06-16</p>
+                <img alt="photo" src="/assets/static/1.png"/>
+                <a><i class="fa fa-comment" aria-hidden="true"></i></a>
+                <a><i class="fa fa-user-times" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <div class="friend-view">
+            <div class="friend-info">
+                <p id="name"><b>Mateusz Naklicki</b></p>
+                <i id="trophy-icon" class="fa fa-trophy" aria-hidden="true"></i>
+                <p id="score">123</p>
+            </div>
+            <div class="right-floated">
+                <p>Last login: 2024-06-16</p>
+                <img alt="photo" src="/assets/static/2.png"/>
+                <a><i class="fa fa-comment" aria-hidden="true"></i></a>
+                <a><i class="fa fa-user-times" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <div class="friend-view">
+            <div class="friend-info">
+                <p id="name"><b>Tymoteusz Paliński</b></p>
+                <i id="trophy-icon" class="fa fa-trophy" aria-hidden="true"></i>
+                <p id="score">-1</p>
+            </div>
+            <div class="right-floated">
+                <p>Last login: 2024-06-16</p>
+                <img alt="photo" src="/assets/static/3.png"/>
+                <a><i class="fa fa-comment" aria-hidden="true"></i></a>
+                <a><i class="fa fa-user-times" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <div class="friend-view">
+            <div class="friend-info">
+                <p id="name"><b>Adam Niesiobędzki</b></p>
+                <i id="trophy-icon" class="fa fa-trophy" aria-hidden="true"></i>
+                <p id="score">997</p>
+            </div>
+            <div class="right-floated">
+                <p>Last login: 2024-06-15</p>
+                <img alt="photo" src="/assets/static/4.png"/>
+                <a><i class="fa fa-comment" aria-hidden="true"></i></a>
+                <a><i class="fa fa-user-times" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+}
+
+func HandleFriendsPage(w http.ResponseWriter, r *http.Request) { 
+	FriendsPage().Render(r.Context(), w)
+}

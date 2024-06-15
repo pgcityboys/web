@@ -5,7 +5,7 @@ import (
     "web/templates/components"
     )
 
-templ HomePage() {
+templ LoginPage() {
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,13 +17,12 @@ templ HomePage() {
 <body>
 	@components.Navbar()
     <div class="container">
-        <h1>Welcome to the Home Page</h1>
-        <p>This is the content of the home page.</p>
+        login page
     </div>
 </body>
 </html>
 }
 
-func HandleHomePage(w http.ResponseWriter, r *http.Request) { 
-	HomePage().Render(r.Context(), w)
+func HandleLoginPage(w http.ResponseWriter, r *http.Request) { 
+	LoginPage().Render(r.Context(), w)
 }

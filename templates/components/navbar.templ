@@ -1,0 +1,37 @@
+package components;
+
+templ Navbar() {
+    <script>
+        function sendLogin() {
+            document.getElementById('popup').classList.remove('active');
+            const login = document.getElementById('login').value;
+            console.log(login);
+            // TODO call api for loging
+        }
+    </script>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/chats">Chats</a></li>
+            <li><a href="/friends">Friends</a></li>
+            <li><a href="/timetable">Timetable</a></li>
+            <li><a href="/settings">Settings</a></li>
+            <li class="right" id="log_in_out_btn">
+                @log_in_out_btn()
+            </li>
+            <li class="right" id="user-info">
+                @userInfo()
+            </li>
+        </ul>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <h5>Type your login</h5>
+                <input id="login" type="text"/>
+                <br><br>
+                <button onclick="sendLogin()">Login</button>
+            </div>
+        </div>
+    </nav>
+}

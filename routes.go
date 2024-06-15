@@ -6,11 +6,13 @@ import (
 	"web/templates"
 )
 
-
-type HttpHandler func (http.ResponseWriter, *http.Request)
+type HttpHandler func(http.ResponseWriter, *http.Request)
 
 func GetRoutes() (router http.ServeMux) {
 	router.HandleFunc("/", createRootHandler(templates.HandleHomePage, http.NotFound))
+	router.HandleFunc("/friends", templates.HandleFriendsPage)
+	router.HandleFunc("/timetable", templates.HandleTimeTablePage)
+  
 	router.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
 	// Api endpoints
@@ -27,4 +29,3 @@ func createRootHandler(rootHandler, notFoundHandler HttpHandler) HttpHandler {
 		}
 	}
 }
-
