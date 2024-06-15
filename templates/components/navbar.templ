@@ -1,6 +1,15 @@
 package components;
 
 templ Navbar() {
+    <script>
+        function sendLogin() {
+            document.getElementById('popup').classList.remove('active');
+            const login = document.getElementById('login').value;
+            console.log(login);
+            // TODO call api for loging
+        }
+    </script>
+
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -15,5 +24,14 @@ templ Navbar() {
                 @userInfo()
             </li>
         </ul>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <h5>Type your login</h5>
+                <input id="login" type="text"/>
+                <br><br>
+                <button onclick="sendLogin()">Login</button>
+            </div>
+        </div>
     </nav>
 }

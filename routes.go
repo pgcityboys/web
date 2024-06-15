@@ -9,7 +9,6 @@ type HttpHandler func(http.ResponseWriter, *http.Request)
 
 func GetRoutes() (router http.ServeMux) {
 	router.HandleFunc("/", createRootHandler(templates.HandleHomePage, http.NotFound))
-	router.HandleFunc("/login", templates.HandleLoginPage)
 	router.HandleFunc("/friends", templates.HandleFriendsPage)
 	router.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	return router
