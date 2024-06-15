@@ -1,0 +1,13 @@
+package templates;
+
+import "net/http"
+
+templ HomePage() {
+	<div>
+		chuj
+	</div>
+}
+
+func HandleHomePage(w http.ResponseWriter, r *http.Request) { 
+	HomePage().Render(r.Context(), w)
+}
