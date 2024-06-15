@@ -21,27 +21,23 @@ nav ul li.right {
 }
 
 
-nav ul li a {
+.navitem {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 20px;
     text-decoration: none;
-}
-
-button {
     background-color: transparent;
     border: none;
-    padding: 0;
-    margin: 0;
     font-family: inherit;
     font-size: inherit;
+}
+
+.navitem:hover, button:hover {
+    background-color: #521A57;
     cursor: pointer;
 }
 
-nav ul li a:hover {
-    background-color: #521A57;
-}
 .container {
     padding: 20px;
 }
