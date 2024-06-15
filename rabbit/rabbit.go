@@ -53,14 +53,20 @@ func establishChannel() error {
 	channel.ExchangeDeclare("web", "direct", false, false, false, false, nil);
 	channel.QueueDeclare("match_req", false, false, false, false, nil);
 	channel.QueueDeclare("chat_req", false, false, false, false, nil)
+	channel.QueueDeclare("rooms_req", false, false, false, false, nil)
+	channel.QueueDeclare("rooms_new", false, false, false, false, nil)
 	channel.QueueBind("match_req", "match_req", "web", false, nil);
 	channel.QueueBind("chat_req", "chat_req", "web", false, nil);
+	channel.QueueBind("rooms_req", "rooms_req", "web", false, nil);
+	channel.QueueBind("rooms_new", "rooms_new", "web", false, nil);
 	// Send out messages to topic exchange
 	channel.ExchangeDeclare("matchmaking", "topic", false, false, false, false, nil);
 	channel.QueueDeclare("match_res", false, false, false, false, nil);
 	channel.QueueDeclare("chat_notify", false, false, false, false, nil)
+	channel.QueueDeclare("room_info", false, false, false, false, nil)
 	channel.QueueBind("match_res", "match_res", "matchmaking", false, nil);
 	channel.QueueBind("chat_notify", "chat_notify", "matchmaking", false, nil);
+	channel.QueueBind("room_info", "room_info", "matchmaking", false, nil);
 	return nil;
 }
 
@@ -74,4 +80,9 @@ func ensureChannelHealth() error {
 func SendMatchmakingRequest(request *messages.MatchRequest) {
 	binaryData, _ := proto.Marshal(request)
 	channel.Publish("web", "match_req", false, false, amqp.Publishing{Body: binaryData})
+}
+
+func SendNewRoomRequest(request *messages.NewRoomRequest) {
+	binaryData, _ := proto.Marshal(request)
+	channel.Publish("web", "rooms_new", false, false, amqp.Publishing{Body: binaryData})
 }
