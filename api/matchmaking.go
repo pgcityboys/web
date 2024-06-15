@@ -29,7 +29,7 @@ func HandleNewRoom(w http.ResponseWriter, r *http.Request) {
 func HandleCategoryInfo(w http.ResponseWriter, r *http.Request) {
 	log.Println("Sending new room request")
 	category := r.PathValue("category")
-	rabbit.SendCategoryInfoRequest(category)
+	rabbit.SendCategoryInfoRequest(&messages.CategoryInfoRequest{Category: category, UserId: "testowy"})
 }
 
 func HandleRoomLeave(w http.ResponseWriter, r *http.Request) {
