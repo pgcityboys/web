@@ -1,14 +1,16 @@
 /* how to center div elements pls help */
 
 .friend-view {
-    background-color: #9A38B3;
-    color: #111111;
-    border-radius: 5em;
+    background-color: #deaceb;
+    color: #f0f0f0;
+    border-radius: 0.5em;
     display: flex;
     align-items: center;
     font-size: large;
     margin: 2%;
     padding-left: 3%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .friend-info {
@@ -34,8 +36,14 @@
     margin-right: 5%;
 }
 
-#name, #trophy-icon, #score {
+#top-performer {
     font-size: xx-large;
+    color:#fcc653;
+}
+
+
+#name, #trophy-icon, #score {
+    font-size: x-large;
 }
 
 #name {
@@ -54,6 +62,6 @@ img {
 }
 
 .friend-view a:hover {
-    color: #3A3A3A;
+    color: white;
     font-size: 200%;
 }
