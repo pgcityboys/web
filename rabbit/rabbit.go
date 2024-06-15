@@ -55,10 +55,12 @@ func establishChannel() error {
 	channel.QueueDeclare("chat_req", false, false, false, false, nil)
 	channel.QueueDeclare("rooms_req", false, false, false, false, nil)
 	channel.QueueDeclare("rooms_new", false, false, false, false, nil)
+	channel.QueueDeclare("leave_room", false, false, false, false, nil)
 	channel.QueueBind("match_req", "match_req", "web", false, nil);
 	channel.QueueBind("chat_req", "chat_req", "web", false, nil);
 	channel.QueueBind("rooms_req", "rooms_req", "web", false, nil);
 	channel.QueueBind("rooms_new", "rooms_new", "web", false, nil);
+	channel.QueueBind("leave_room", "leave_room", "web", false, nil);	
 	// Send out messages to topic exchange
 	channel.ExchangeDeclare("matchmaking", "topic", false, false, false, false, nil);
 	channel.QueueDeclare("match_res", false, false, false, false, nil);
@@ -85,4 +87,14 @@ func SendMatchmakingRequest(request *messages.MatchRequest) {
 func SendNewRoomRequest(request *messages.NewRoomRequest) {
 	binaryData, _ := proto.Marshal(request)
 	channel.Publish("web", "rooms_new", false, false, amqp.Publishing{Body: binaryData})
+}
+
+func SendCategoryInfoRequest(request string) {
+	channel.Publish("web", "rooms_req", false, false, amqp.Publishing{Body: []byte(request)})
+}
+
+func SendLeaveRoomRequest(request *messages.MatchRequest) {
+	binaryData, _ := proto.Marshal(request)
+	log.Println("Sending room leave request")
+	channel.Publish("web", "leave_room", false, false, amqp.Publishing{Body: binaryData})
 }

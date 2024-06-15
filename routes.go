@@ -20,6 +20,8 @@ func GetRoutes() (router http.ServeMux) {
 	// Api endpoints
 	router.HandleFunc("GET /api/matchreq/{id}", api.HandleMatchRequest)
 	router.HandleFunc("GET /api/newroom", api.HandleNewRoom)
+	router.HandleFunc("GET /api/categories/{category}", api.HandleCategoryInfo)
+	router.HandleFunc("GET /api/leave/{room}/{user}", api.HandleRoomLeave)
 	return router
 }
 

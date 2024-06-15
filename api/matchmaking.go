@@ -21,6 +21,21 @@ func HandleMatchRequest(w http.ResponseWriter, r *http.Request) {
 // Hit up this api endpoint to send new room request
 func HandleNewRoom(w http.ResponseWriter, r *http.Request) {
 	log.Println("Sending new room request")
-	payload := messages.NewRoomRequest {UserId: "mock user", Category: "Hot milfs", Description: "Cool room, asf", MaxUsers: 4}
+	payload := messages.NewRoomRequest {UserId: "mock user", Category: "milfs", Description: "Cool room, asf", MaxUsers: 4}
 	rabbit.SendNewRoomRequest(&payload)
+}
+
+
+func HandleCategoryInfo(w http.ResponseWriter, r *http.Request) {
+	log.Println("Sending new room request")
+	category := r.PathValue("category")
+	rabbit.SendCategoryInfoRequest(category)
+}
+
+func HandleRoomLeave(w http.ResponseWriter, r *http.Request) {
+	user := r.PathValue("user")
+	room := r.PathValue("room")
+	log.Println("Sending new room request")
+	request := messages.MatchRequest{UserId: user, RoomId: room}
+	rabbit.SendLeaveRoomRequest(&request)
 }
