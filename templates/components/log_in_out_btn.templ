@@ -36,6 +36,10 @@ templ log_in_out_btn() {
         }
         else{
             log_in_out_btn.innerHTML = `<button onclick='popUpLoginWindow()'> Login </button>`;
+            log_in_out_btn.innerHTML = `<a onClick='logout()'> Logout </a>`;
+        }
+        else{
+            log_in_out_btn.innerHTML = `<a href='/login'> Login </a>`;
         }
       });
     </script>
