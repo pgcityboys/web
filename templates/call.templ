@@ -1,0 +1,55 @@
+package templates;
+
+import (
+    "net/http"
+    "web/templates/components"
+    )
+
+templ CallPage() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlyStudents</title>
+    <link rel="stylesheet" href="/assets/navbar.css">
+</head>
+<body>
+	@components.Navbar()
+    <div class="container">
+        <h1>Welcome to the Call Page</h1>
+        <iframe
+            allow="camera; microphone; display-capture; fullscreen; clipboard-read; clipboard-write; autoplay"
+            id="mirotalk-iframe"
+            style="height: 100vh; width: 100%; border: 0px;">
+        </iframe>
+    </div>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            function createIframeSrc(callId, username) {
+                const baseUrl = 'https://p2p.mirotalk.com/join';
+                const params = new URLSearchParams({
+                    room: callId,
+                    name: username,
+                    notify: '0'
+                });
+                return `${baseUrl}?${params.toString()}`;
+            }
+
+            const callId = 'roomId'; // Replace with actual room ID
+            const username = crypto.randomUUID(); // Replace with actual username
+            const iframeSrc = createIframeSrc(callId, username);
+
+            document.getElementById('mirotalk-iframe').src = iframeSrc;
+        });
+    </script>
+
+</body>
+</html>
+}
+
+func HandleCallPage(w http.ResponseWriter, r *http.Request) { 
+	CallPage().Render(r.Context(), w)
+}
