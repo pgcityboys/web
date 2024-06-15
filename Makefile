@@ -1,3 +1,2 @@
-.build:
-	templ generate
-	go build .
+proto:
+	protoc -I=. --go_out=. ./messages.proto
