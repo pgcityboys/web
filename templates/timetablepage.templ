@@ -1,0 +1,62 @@
+package templates;
+
+import (
+    "net/http"
+    "web/templates/components"
+    )
+
+templ TimeTablePage() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.rawgit.com/nizarmah/calendar-javascript-lib/master/calendarorganizer.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/navbar.css">
+    <link rel="stylesheet" href="/assets/timetable.css">
+</head>
+
+<body>
+    @components.Navbar()
+    <div id='content'> 
+        <div id="calendarContainer"></div>
+        <div id="organizerContainer"></div>
+        
+    </div>
+    <script src="https://cdn.rawgit.com/nizarmah/calendar-javascript-lib/master/calendarorganizer.min.js"></script>
+    <script>
+        var calendar = new Calendar("calendarContainer", "medium",
+                            [ "Monday", 3 ],
+                            [ "#9828b5", "#802398", "#ffffff", "#521A57" ],
+                            {
+                                days: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",  "Saturday" ],
+                                months: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
+                                indicator: true,
+                                placeholder: "<span>Custom Placeholder</span>"
+                            });
+
+        //todo fetch events from backend
+
+        var data = {
+                    2024: {
+                        6: {
+                            20: [
+                                {
+                                    startTime: "00:00",
+                                    endTime: "24:00",
+                                    text: "Meeting title",
+                                    link: "https://github.com/nizarmah" 
+                                }
+                            ]
+                        }
+                    }
+                };
+
+        var organizer = new Organizer("organizerContainer", calendar, data);
+    </script>
+</body>
+</html>
+}
+
+func HandleTimeTablePage(w http.ResponseWriter, r *http.Request) { 
+	TimeTablePage().Render(r.Context(), w)
+}
+
