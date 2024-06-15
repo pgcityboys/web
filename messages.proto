@@ -28,6 +28,7 @@ message RoomInfo {
 message CategoryInfo {
 	string category = 1;
 	repeated RoomInfo rooms = 2;
+	string userId = 3;
 }
 
 
