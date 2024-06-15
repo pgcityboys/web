@@ -53,7 +53,7 @@ img {
     height: auto;
 }
 
-a:hover {
+.friend-view a:hover {
     color: #3A3A3A;
     font-size: 200%;
 }
