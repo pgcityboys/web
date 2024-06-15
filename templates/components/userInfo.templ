@@ -1,0 +1,32 @@
+package components;
+
+
+var handleUser = templ.NewOnceHandle()
+
+templ userInfo() {
+    @handleUser.Once(){
+    <script type="text/javascript">
+       function getUser() {
+        const userJSON = localStorage.getItem('user');
+        if (userJSON) {
+          try {
+            const user = JSON.parse(userJSON);
+            console.log('User:', user);
+            return user;
+          } catch (e) {
+            console.error('Error parsing user data:', e);
+          }
+        }
+        return null;
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        const user = getUser();
+        console.log("debug");
+        const userInfoElement = document.getElementById('user-info');
+        if (user) {
+          userInfoElement.innerHTML = `<a href='/profile'> ${user}</a>`;
+        }
+      });
+    </script>
+  }
+}
