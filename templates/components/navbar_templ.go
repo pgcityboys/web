@@ -23,7 +23,7 @@ func Navbar() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav><ul><li><a href=\"/\">Home</a></li><li><a href=\"/chats\">Chats</a></li><li><a href=\"/friends\">Friends</a></li><li><a href=\"/timetable\">Timetable</a></li><li><a href=\"/settings\">Settings</a></li><li class=\"right\" id=\"log_in_out_btn\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<script>\r\n        function sendLogin() {\r\n            document.getElementById('popup').classList.remove('active');\r\n            const login = document.getElementById('login').value;\r\n            console.log(login);\r\n            // TODO call api for loging\r\n        }\r\n    </script><nav><ul><li><a href=\"/\" class=\"navitem\">Home</a></li><li><a href=\"/chats\" class=\"navitem\">Chats</a></li><li><a href=\"/friends\" class=\"navitem\">Friends</a></li><li><a href=\"/timetable\" class=\"navitem\">Timetable</a></li><li><a href=\"/settings\" class=\"navitem\">Settings</a></li><li class=\"right\" id=\"log_in_out_btn\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -39,7 +39,7 @@ func Navbar() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</li></ul></nav>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</li></ul><div id=\"popup\" class=\"popup\"><div class=\"popup-content\"><h5>Type your login</h5><input id=\"login\" type=\"text\"><br><br><button onclick=\"sendLogin()\">Login</button></div></div></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

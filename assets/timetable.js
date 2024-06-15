@@ -53,12 +53,11 @@ let fetchMeetings = () => {
 fetchMeetings();
 
 function openPopup() {
-    document.getElementById("popup").style.display = "block";
-    document.getElementById("overlay").style.display = "block";
+    document.getElementById("popup-form").style.display = "block";
 }
 
 function closePopup() {
-    document.getElementById("popup").style.display = "none";
+    document.getElementById("popup-form").style.display = "none";
     document.getElementById("eventForm").reset();
 }
 
