@@ -24,10 +24,18 @@ templ log_in_out_btn() {
         location.reload();
       }
 
+      function popUpLoginWindow() {
+        document.getElementById('popup').classList.add('active');
+      }
+
       document.addEventListener('DOMContentLoaded', function() {
         const user = getUser();
         const log_in_out_btn = document.getElementById('log_in_out_btn');
         if (user) {
+            log_in_out_btn.innerHTML = `<button onclick='logout()'> Logout </button>`;
+        }
+        else{
+            log_in_out_btn.innerHTML = `<button onclick='popUpLoginWindow()'> Login </button>`;
             log_in_out_btn.innerHTML = `<a onClick='logout()'> Logout </a>`;
         }
         else{
