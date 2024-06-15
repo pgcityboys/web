@@ -18,7 +18,7 @@ func GetRoutes() (router http.ServeMux) {
 	router.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
 	// Api endpoints
-	router.HandleFunc("GET /api/matchreq", api.HandleMatchRequest)
+	router.HandleFunc("GET /api/matchreq/{id}", api.HandleMatchRequest)
 	router.HandleFunc("GET /api/newroom", api.HandleNewRoom)
 	return router
 }
