@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"web/api"
 	"web/templates"
 )
 
@@ -11,6 +12,9 @@ type HttpHandler func (http.ResponseWriter, *http.Request)
 func GetRoutes() (router http.ServeMux) {
 	router.HandleFunc("/", createRootHandler(templates.HandleHomePage, http.NotFound))
 	router.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+
+	// Api endpoints
+	router.HandleFunc("GET /api/matchreq", api.HandleMatchRequest)
 	return router
 }
 
