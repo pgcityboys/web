@@ -89,12 +89,18 @@ func SendNewRoomRequest(request *messages.NewRoomRequest) {
 	channel.Publish("web", "rooms_new", false, false, amqp.Publishing{Body: binaryData})
 }
 
-func SendCategoryInfoRequest(request string) {
-	channel.Publish("web", "rooms_req", false, false, amqp.Publishing{Body: []byte(request)})
+func SendCategoryInfoRequest(request *messages.CategoryInfoRequest) {
+	binaryData, _ := proto.Marshal(request)
+	channel.Publish("web", "rooms_req", false, false, amqp.Publishing{Body: binaryData})
 }
 
 func SendLeaveRoomRequest(request *messages.MatchRequest) {
 	binaryData, _ := proto.Marshal(request)
 	log.Println("Sending room leave request")
 	channel.Publish("web", "leave_room", false, false, amqp.Publishing{Body: binaryData})
+}
+
+func SendChatMessage(request *messages.ChatIn) {
+	binaryData, _ := proto.Marshal(request)
+	channel.Publish("web", "chat_req", false, false, amqp.Publishing{Body: binaryData})
 }

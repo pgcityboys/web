@@ -23,7 +23,6 @@ message RoomInfo {
 	int32 currentUsers = 4;
 }
 
-
 // Struct representing info about all rooms from a given category
 message CategoryInfo {
 	string category = 1;
@@ -56,4 +55,9 @@ message ChatOut {
 	repeated string users = 2;
 	string roomId = 3;
 	string content = 4;
+}
+
+message CategoryInfoRequest {
+	string userId = 1;
+	string category = 2;
 }
