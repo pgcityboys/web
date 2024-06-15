@@ -5,12 +5,16 @@ import (
 	"net/http"
 	"web/messages"
 	"web/rabbit"
+
+	"github.com/google/uuid"
 )
 
 // Hit up this api endpoint to send matchmaking request
 func HandleMatchRequest(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
 	log.Println("Sending mock match request")
-	payload := messages.MatchRequest{UserId: "mock user", RoomId: "test"}
+	userId := uuid.New().String()
+	payload := messages.MatchRequest{UserId: userId, RoomId: id}
 	rabbit.SendMatchmakingRequest(&payload)
 }
 
