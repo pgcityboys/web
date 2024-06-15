@@ -5,11 +5,11 @@ import (
 	"web/templates"
 )
 
-
-type HttpHandler func (http.ResponseWriter, *http.Request)
+type HttpHandler func(http.ResponseWriter, *http.Request)
 
 func GetRoutes() (router http.ServeMux) {
 	router.HandleFunc("/", createRootHandler(templates.HandleHomePage, http.NotFound))
+	router.HandleFunc("/login", templates.HandleLoginPage)
 	router.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	return router
 }
@@ -23,4 +23,3 @@ func createRootHandler(rootHandler, notFoundHandler HttpHandler) HttpHandler {
 		}
 	}
 }
-

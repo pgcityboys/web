@@ -1,0 +1,19 @@
+package components;
+
+templ Navbar() {
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/chats">Chats</a></li>
+            <li><a href="/friends">Friends</a></li>
+            <li><a href="/timetable">Timetable</a></li>
+            <li><a href="/settings">Settings</a></li>
+            <li class="right" id="log_in_out_btn">
+                @log_in_out_btn()
+            </li>
+            <li class="right" id="user-info">
+                @userInfo()
+            </li>
+        </ul>
+    </nav>
+}

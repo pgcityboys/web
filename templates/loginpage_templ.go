@@ -15,7 +15,7 @@ import (
 	"web/templates/components"
 )
 
-func HomePage() templ.Component {
+func LoginPage() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -36,7 +36,7 @@ func HomePage() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><h1>Welcome to the Home Page</h1><p>This is the content of the home page.</p></div></body></html>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\">login page</div></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -47,6 +47,6 @@ func HomePage() templ.Component {
 	})
 }
 
-func HandleHomePage(w http.ResponseWriter, r *http.Request) {
-	HomePage().Render(r.Context(), w)
+func HandleLoginPage(w http.ResponseWriter, r *http.Request) {
+	LoginPage().Render(r.Context(), w)
 }
