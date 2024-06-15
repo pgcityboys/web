@@ -29,9 +29,39 @@ nav ul li a {
     text-decoration: none;
 }
 
+button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+}
+
 nav ul li a:hover {
     background-color: #521A57;
 }
 .container {
     padding: 20px;
+}
+
+.popup {
+    background-color: whitesmoke;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 1000;
+}
+
+.popup-content {
+    text-align: center;
+    background-color: whitesmoke;
+}
+
+.popup.active {
+    display: block;
 }

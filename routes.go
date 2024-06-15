@@ -14,6 +14,7 @@ func GetRoutes() (router http.ServeMux) {
 	router.HandleFunc("/login", templates.HandleLoginPage)
 	router.HandleFunc("/friends", templates.HandleFriendsPage)
 	router.HandleFunc("/timetable", templates.HandleTimeTablePage)
+  
 	router.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
 	// Api endpoints
