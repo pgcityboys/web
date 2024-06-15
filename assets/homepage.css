@@ -23,24 +23,27 @@
     display: none;
     margin: 0 auto;
     text-align: center;
-    background-color: #9A38B3;
-    border-radius: 35px;
+    background-color: #deaceb;
     color: whitesmoke;
     padding: 50px 0 50px 0;
     font-size: 300%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navigation-option {
     width: 60%;
     height: 100px;
-    background-color: #9A38B3;
+    background-color: #deaceb;
     font-size: 300%;
-    border-radius: 35px;
     text-align: center;
     justify-content: center;
     text-decoration: none;
     color: whitesmoke;
     line-height: 100px;
+    margin-top: 1%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #main-menu {
@@ -53,5 +56,5 @@
 }
 
 .navigation-option:hover {
-    background-color: #AF4FCF;
+    background-color: #ad63c0;
 }
