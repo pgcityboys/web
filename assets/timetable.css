@@ -2,3 +2,57 @@
     display: flex;
     justify-content: center;
 }
+
+.popup-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.search-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.search-section {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    width: calc(100% - 130px); /* Mniejsza szerokość, aby zmieścić przycisk i dropdown */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Uwzględnienie paddingu w obliczeniach szerokości */
+}
+
+
+#search-button {
+    float: right;
+    width: 100px; /* Szerokość przycisku */
+    padding: 10px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #4cae4c;
+}

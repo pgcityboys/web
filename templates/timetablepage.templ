@@ -11,30 +11,25 @@ templ TimeTablePage() {
 <html lang="en">
 <head>
     <link href="https://cdn.rawgit.com/nizarmah/calendar-javascript-lib/master/calendarorganizer.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/navbar.css">
-    <link rel="stylesheet" href="/assets/timetable.css">
-    <style>
-        .popup-form {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/navbar.css"/>
+    <link rel="stylesheet" href="/assets/timetable.css"/>
 </head>
 
 <body>
     @components.Navbar()
+    <div class="search-container">
+        <h1>Wyszukiwarka Wirtualnych Pokoi do Nauki</h1>
+        <div class="search-section">
+            <input type="text" id="search-input" placeholder="Wpisz temat...">
+            <button id="search-button">Szukaj</button>
+        </div>
+    </div>
+
     <div id='content'> 
         <div id="calendarContainer"></div>
         <div id="organizerContainer"></div>
-        
     </div>
+    
     <div class="popup-form" id="popup-form">
         <h2>Formularz do uzupełnienia</h2>
         <form id="eventForm">
