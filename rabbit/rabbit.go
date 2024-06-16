@@ -1,6 +1,7 @@
 package rabbit
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"time"
@@ -17,6 +18,8 @@ var channel *amqp.Channel;
 const TIMEOUT time.Duration = 5;
 const RETRIES int = 5;
 const SEND_TIMEOUT time.Duration = 10;
+
+var ChatChannel chan messages.ChatOut = make(chan messages.ChatOut);
 
 func IntializeRMQClient() {
 	rabbitAddress := utils.EnvWithDefaults("RABBITMQ_ADDRESS", "localhost")
@@ -37,6 +40,7 @@ func IntializeRMQClient() {
 				continue;
 			}
 			log.Println("Connected to rmq instance")
+			go handleChatMessages();
 			<-forever;
 		}
 	}
@@ -103,4 +107,14 @@ func SendLeaveRoomRequest(request *messages.MatchRequest) {
 func SendChatMessage(request *messages.ChatIn) {
 	binaryData, _ := proto.Marshal(request)
 	channel.Publish("web", "chat_req", false, false, amqp.Publishing{Body: binaryData})
+}
+
+func handleChatMessages() {
+	chatChan, _ := connection.Channel();
+	msgs, _ := chatChan.ConsumeWithContext(context.Background(), "chat_notify", "webapp", true, false, false, false, nil)
+	for msg := range msgs {
+		var chat messages.ChatOut;
+		proto.Unmarshal(msg.Body, &chat);
+		ChatChannel<-chat;
+	}
 }
