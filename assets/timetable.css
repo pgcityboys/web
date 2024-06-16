@@ -9,7 +9,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: #d579ec;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
@@ -47,12 +47,57 @@ h1 {
     width: 100px; /* Szerokość przycisku */
     padding: 10px;
     border: none;
-    background-color: #5cb85c;
+    background-color: #ad63c0;
     color: white;
     border-radius: 4px;
     cursor: pointer;
 }
 
 #search-button:hover {
-    background-color: #4cae4c;
+    background-color: #9d2cb9;
 }
+
+.addMeetingBtn {
+    margin: auto;
+    background-color: #ad63c0;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer; 
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.addMeetingBtn:hover {
+    background-color: #9d2cb9;
+}
+
+.popup-form-input {
+    width: 100%; /* Szerokość 100% kontenera */
+    padding: 12px 20px; /* Wewnętrzne odstępy */
+    margin: 8px 0; /* Margines */
+    display: inline-block; /* Wyświetlanie w linii */
+    border: 1px solid #ccc; /* Szare obramowanie */
+    border-radius: 4px; /* Zaokrąglone rogi */
+    box-sizing: border-box; /* Uwzględnij obramowanie i odstępy wewnętrzne w szerokości i wysokości */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Wewnętrzny cień */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Animacja zmiany obramowania i cienia */
+}
+
+/* Efekt po najechaniu kursorem */
+.popup-form-input:hover {
+    border-color: #888; /* Zmiana koloru obramowania */
+}
+
+/* Efekt po skupieniu (focus) */
+.popup-form-input:focus {
+    border-color: #4CAF50; /* Zielone obramowanie */
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.6); /* Zielony cień */
+    outline: none; /* Usunięcie domyślnego efektu focus */
+}
+
