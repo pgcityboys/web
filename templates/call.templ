@@ -37,11 +37,11 @@ templ CallPage() {
                 });
                 return `${baseUrl}?${params.toString()}`;
             }
-
-            const callId = 'roomId'; // Replace with actual room ID
+            const urlParams = new URLSearchParams(window.location.search);
+            const callId = 'studyBudy' + urlParams.get('id');
             const username = crypto.randomUUID(); // Replace with actual username
             const iframeSrc = createIframeSrc(callId, username);
-
+            console.log(callId);
             document.getElementById('mirotalk-iframe').src = iframeSrc;
         });
     </script>

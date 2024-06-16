@@ -38,7 +38,7 @@ let fetchMeetings = (category) => {
                     startTime: meeting.startTime,
                     endTime: meeting.endTime,
                     text: meeting.category,
-                    link: "/meeting/" + meeting.id
+                    link: "/meeting/?id=" + meeting.id
                 });
             });
 
