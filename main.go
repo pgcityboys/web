@@ -15,7 +15,7 @@ func main() {
 	go rabbit.IntializeRMQClient()
 	fmt.Println("Starting http server @ localhost:2137")
 	router := GetRoutes();
-	router.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("/ws/{id}", func(w http.ResponseWriter, r *http.Request) {
 		wsserver.ServeWs(hub, w, r)
 	})
 	http.ListenAndServe(":2137", &router)
