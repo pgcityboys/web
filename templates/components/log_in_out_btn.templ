@@ -10,7 +10,6 @@ templ log_in_out_btn() {
         const userJSON = localStorage.getItem('user');
         if (userJSON) {
           try {
-            const user = JSON.parse(userJSON);
             return user;
           } catch (e) {
             console.error('Error parsing user data:', e);

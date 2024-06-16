@@ -21,10 +21,9 @@ templ userInfo() {
       }
       document.addEventListener('DOMContentLoaded', function() {
         const user = getUser();
-        console.log("debug");
         const userInfoElement = document.getElementById('user-info');
         if (user) {
-          userInfoElement.innerHTML = `<a href='/profile'> ${user}</a>`;
+          userInfoElement.innerHTML = `<a class="navitem" href='/profile'> ${user}</a>`;
         }
       });
     </script>

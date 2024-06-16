@@ -7,11 +7,11 @@ var calendar = new Calendar("calendarContainer", "medium",
                         days: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",  "Saturday" ],
                         months: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
                         indicator: true,
-                        placeholder: "<button onclick=openPopup()>Custom Placeholder</button>"
+                        placeholder: "<button class=addMeetingBtn onclick=openPopup()>Add meeting</button>"
                     });
 
-let fetchMeetings = () => {
-    const apiUrl = 'http://localhost:2137/api/meetings/matematyka';
+let fetchMeetings = (category) => {
+    const apiUrl = 'http://localhost:2137/api/meetings/' + category;
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
@@ -38,7 +38,7 @@ let fetchMeetings = () => {
                     startTime: meeting.startTime,
                     endTime: meeting.endTime,
                     text: meeting.category,
-                    link: meeting.link
+                    link: "/meeting/?id=" + meeting.id
                 });
             });
 
@@ -50,7 +50,7 @@ let fetchMeetings = () => {
         });
 }
 
-fetchMeetings();
+fetchMeetings("matematyka");
 
 function openPopup() {
     document.getElementById("popup-form").style.display = "block";
@@ -66,7 +66,7 @@ function closePopup() {
         var startTime = document.getElementById("startTime").value;
         var endTime = document.getElementById("endTime").value;
         var category = document.getElementById("category").value;
-        var link = document.getElementById("link").value;
+        var link = "aaaaa";
         var day = document.getElementById("day").value;
         var month = document.getElementById("month").value;
         var year = document.getElementById("year").value;
@@ -96,7 +96,7 @@ function sendData(data) {
 
     fetch(apiUrl, fetchOptions)
         .then(function(response) {
-        fetchMeetings();
+        fetchMeetings(data.category);
         return response.json();
     })
 }

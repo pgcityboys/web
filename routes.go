@@ -10,7 +10,7 @@ type HttpHandler func(http.ResponseWriter, *http.Request)
 
 func GetRoutes() (router http.ServeMux) {
 	router.HandleFunc("/", createRootHandler(templates.HandleHomePage, http.NotFound))
-	router.HandleFunc("/call", templates.HandleCallPage)
+	router.HandleFunc("/meeting/", templates.HandleCallPage)
 	router.HandleFunc("/friends", templates.HandleFriendsPage)
 	router.HandleFunc("/timetable", templates.HandleTimeTablePage)
 	router.HandleFunc("POST /api/meetings/create/meeting", api.HandleCreateMeeting)

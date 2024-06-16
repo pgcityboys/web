@@ -11,56 +11,48 @@ templ TimeTablePage() {
 <html lang="en">
 <head>
     <link href="https://cdn.rawgit.com/nizarmah/calendar-javascript-lib/master/calendarorganizer.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/navbar.css">
-    <link rel="stylesheet" href="/assets/timetable.css">
-    <style>
-        .popup-form {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/navbar.css"/>
+    <link rel="stylesheet" href="/assets/timetable.css"/>
 </head>
 
 <body>
     @components.Navbar()
+    <div class="search-container">
+        <h1>Learning room search</h1>
+        <div class="search-section">
+            <input type="text" id="search-input" placeholder="Search for topic...">
+            <button id="search-button" onclick="fetchMeetings(document.getElementById('search-input').value)">Szukaj</button>
+        </div>
+    </div>
+
     <div id='content'> 
         <div id="calendarContainer"></div>
         <div id="organizerContainer"></div>
-        
     </div>
+    
     <div class="popup-form" id="popup-form">
-        <h2>Formularz do uzupełnienia</h2>
+        <h2>Create meeting form</h2>
         <form id="eventForm">
              <label for="startTime">StartTime:</label>
-             <input type="text" id="startTime" name="startTime"><br>
+             <input class="popup-form-input" type="text" id="startTime" name="startTime"><br>
 
              <label for="endTime">EndTime:</label>
-             <input type="text" id="endTime" name="endTime"><br>
+             <input class="popup-form-input" type="text" id="endTime" name="endTime"><br>
 
              <label for="category">Category:</label>
-             <input type="text" id="category" name="category"><br>
-
-             <label for="link">Link:</label>
-             <input type="text" id="link" name="link"><br>
+             <input class="popup-form-input" type="text" id="category" name="category"><br>
 
              <label for="day">Day:</label>
-             <input type="number" id="day" name="day" min="1" max="31"><br>
+             <input class="popup-form-input" type="number" id="day" name="day" min="1" max="31"><br>
 
              <label for="month">Month:</label>
-             <input type="number" id="month" name="month" min="1" max="12"><br>
+             <input class="popup-form-input" type="number" id="month" name="month" min="1" max="12"><br>
 
              <label for="year">Year:</label>
-             <input type="number" id="year" name="year"><br>
+             <input class="popup-form-input" type="number" id="year" name="year"><br>
 
-             <input type="submit" value="Submit">
-             <button type="button" onclick="closePopup()">Close</button>
+             <input class="addMeetingBtn" type="submit" value="Submit">
+             <button class="addMeetingBtn" type="button" onclick="closePopup()">Close</button>
         </form>
     </div>
     <script src="https://cdn.rawgit.com/nizarmah/calendar-javascript-lib/master/calendarorganizer.min.js"></script>
