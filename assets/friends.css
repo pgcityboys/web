@@ -21,11 +21,9 @@
 }
 
 .right-floated {
-    width: 100%;
+    width: 50%;
     display: flex;
     align-items: center;
-    margin-right: auto;
-    margin-left: auto;
 }
 
 .right-floated > a {
@@ -34,6 +32,7 @@
 
 .right-floated > * {
     margin-right: 5%;
+    margin-left: auto;
 }
 
 #top-performer {
