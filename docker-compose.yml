@@ -6,10 +6,19 @@ services:
     env_file:
       - .env
     networks:
-      - onlystudents
+      - studybuddy
+
   userio:
-    image: adamniesiobedzki/userio:latest
+    image: test:1.0
+    env_file:
+      - .env
+    environment:
+      - DB_URL=${DB_URL:-jdbc:postgresql://swiniak:5432/hackathon-main}
+      - DB_USER=${DB_USER:-hackathon}
+      - DB_PASS=${DB_PASS:-lecimyniespimy}
+    ports:
+      - "8080:8080"
     networks:
-      - onlystudents
+      - studybuddy
 networks:
-  onlystudents:
+  studybuddy:
