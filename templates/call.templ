@@ -39,11 +39,26 @@ templ CallPage() {
             }
             const urlParams = new URLSearchParams(window.location.search);
             const callId = 'studyBudy' + urlParams.get('id');
-            const username = crypto.randomUUID(); // Replace with actual username
+            
+            const username = getMiroUser();
+   
             const iframeSrc = createIframeSrc(callId, username);
-            console.log(callId);
             document.getElementById('mirotalk-iframe').src = iframeSrc;
         });
+
+        function getMiroUser() {
+            const userJSON = localStorage.getItem('user');
+            if (userJSON) {
+            try {
+                const user = JSON.parse(userJSON);
+                console.log('User:', user);
+                return user;
+            } catch (e) {
+                console.error('Error parsing user data:', e);
+            }
+            }
+            return crypto.randomUUID();
+        }
     </script>
 
 </body>

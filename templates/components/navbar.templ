@@ -5,8 +5,8 @@ templ Navbar() {
         function sendLogin() {
             document.getElementById('popup').classList.remove('active');
             const login = document.getElementById('login').value;
-            console.log(login);
-            // TODO call api for loging
+            localStorage.setItem("user", "\"" + login + "\"");
+            location.reload();
         }
     </script>
 
@@ -29,7 +29,7 @@ templ Navbar() {
             <div class="popup-content">
                 <p>Type your login</p>
                 <input id="login" type="text"/>
-                <br><br>
+                <br>
                 <button onclick="sendLogin()">Login</button>
             </div>
         </div>
