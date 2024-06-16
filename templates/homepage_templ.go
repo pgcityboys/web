@@ -28,7 +28,7 @@ func HomePage() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>OnlyStudents</title><link rel=\"stylesheet\" href=\"/assets/navbar.css\"></head><body>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>StudyOnly</title><link rel=\"stylesheet\" href=\"/assets/homepage.css\"><link rel=\"stylesheet\" href=\"/assets/navbar.css\"><script>\r\n        function delay(ms) {\r\n            return new Promise(resolve => setTimeout(resolve, ms));\r\n        }\r\n\r\n        async function startSliding() {\r\n            let textsToSlide = [];\r\n            if (localStorage.getItem('animation-finished') != \"true\"){\r\n                textsToSlide = document.getElementsByClassName('sliding-text');\r\n            }\r\n\r\n            for (let i = 0; i < textsToSlide.length; i++){\r\n                textsToSlide[i].style.animationName = \"slide\";\r\n                textsToSlide[i].style.visibility = \"visible\";\r\n                textsToSlide[i].style.display = \"block\";\r\n                await delay(4000);\r\n                textsToSlide[i].style.visibility = \"hidden\";\r\n                textsToSlide[i].style.display = \"none\";\r\n                await delay(250);\r\n            }\r\n\r\n            const menu = document.getElementById('main-menu');\r\n            menu.style.animationName = \"show\";\r\n            menu.style.display = \"flex\";\r\n            menu.style.visibility = \"visible\";\r\n\r\n            localStorage.setItem(\"animation-finished\", \"true\");\r\n        }\r\n    </script></head><body onload=\"startSliding()\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -36,7 +36,7 @@ func HomePage() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><h1>Welcome to the Home Page</h1><p>This is the content of the home page.</p></div></body></html>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container\"><h1 class=\"sliding-text\">The new way of learning is here.</h1><h1 class=\"sliding-text\">Try StudyOnly!</h1><h1 class=\"sliding-text\">&#127891 Work with ambitious people around the world.<br>&#128214 Learn your subjects, exchange tips and information, meet new friends.<br>&#127942 And earn some points for helping!</h1><h1 class=\"sliding-text\">Register and create a room. See how simple it is!</h1><div id=\"main-menu\"><a href=\"http://localhost:2137/friends\" class=\"navigation-option\">Checkout your friends.</a><br><a href=\"http://localhost:2137/timetable\" class=\"navigation-option\">Find study buddy here.</a><br><a href=\"http://localhost:2137/chats\" class=\"navigation-option\">Or chat with them...</a><br></div></div></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

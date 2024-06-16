@@ -1,0 +1,107 @@
+package templates;
+
+import (
+    "net/http"
+    "web/templates/components"
+    )
+
+templ ChatPage() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyOnly</title>
+    <link rel="stylesheet" href="/assets/navbar.css">
+</head>
+<body>
+    @components.Navbar()
+    <div class="container">
+        <div id="chat-messages"></div>
+        <form id="chat-form">
+            <input type="text" id="message-input" placeholder="Wpisz wiadomość...">
+            <button type="submit">Wyślij</button>
+        </form>
+    </div>
+</body>
+
+
+
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const chatForm = document.getElementById('chat-form');
+        const messageInput = document.getElementById('message-input');
+
+        let websocket;
+
+        // Funkcja obsługująca połączenie WebSocket
+        function setupWebSocket() {
+            const userId = 'testuser3';  // Zmień na odpowiednie id_uzytkownika
+            const websocketUrl = `ws://localhost:2137/ws/${userId}`;  // Zmień URL na odpowiedni
+
+            websocket = new WebSocket(websocketUrl);
+
+            // Obsługa zdarzenia po otwarciu połączenia WebSocket
+            websocket.onopen = function () {
+                console.log('Połączono z serwerem WebSocket');
+            };
+
+            // Obsługa zdarzenia otrzymania wiadomości
+            websocket.onmessage = function (event) {
+                console.log('Otrzymano wiadomość:', event.data);
+            };
+
+            // Obsługa zdarzenia zamknięcia połączenia WebSocket
+            websocket.onclose = function () {
+                console.log('Połączenie zostało zamknięte');
+            };
+
+            // Obsługa błędów WebSocket
+            websocket.onerror = function (error) {
+                console.error('Błąd WebSocket:', error);
+            };
+        }
+
+        // Funkcja do wysyłania wiadomości przez WebSocket
+        function sendMessage(event) {
+            event.preventDefault();
+
+            const messageContent = messageInput.value.trim();
+            if (messageContent === '') return;
+
+            const message = {
+                user: 'testuser3',  // Zmień na odpowiednie id_uzytkownika
+                event: 'chat',
+                data: {
+                    room: 'c18abd89-c55d-4642-a1fc-1af701e8411b',
+                    content: messageContent
+                }
+            };
+
+            console.log('Wysyłanie wiadomości:', JSON.stringify(message))
+            websocket.send(JSON.stringify(message));
+            messageInput.value = '';
+        }
+
+        // Funkcja do wyświetlania wiadomości na stronie
+        function displayMessage(author, message) {
+            const messageElement = document.createElement('div');
+            messageElement.innerText = `${author}: ${message}`;
+            chatMessages.appendChild(messageElement);
+        }
+
+        // Inicjalizacja po załadowaniu strony
+        window.onload = function () {
+            setupWebSocket();
+
+            // Obsługa wysyłania formularza
+            chatForm.addEventListener('submit', sendMessage);
+        };
+    </script>
+
+</html>
+}
+
+func HandleChatPage(w http.ResponseWriter, r *http.Request) { 
+	ChatPage().Render(r.Context(), w)
+}

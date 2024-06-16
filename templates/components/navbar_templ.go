@@ -39,7 +39,7 @@ func Navbar() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</li></ul><div id=\"popup\" class=\"popup\"><div class=\"popup-content\"><h5>Type your login</h5><input id=\"login\" type=\"text\"><br><br><button onclick=\"sendLogin()\">Login</button></div></div></nav>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</li></ul><div id=\"popup\" class=\"popup\"><div class=\"popup-content\"><p>Type your login</p><input id=\"login\" type=\"text\"><br><br><button onclick=\"sendLogin()\">Login</button></div></div></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
