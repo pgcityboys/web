@@ -43,9 +43,14 @@ templ HomePage() {
 
             localStorage.setItem("animation-finished", "true");
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+        startSliding();
+        console.log("dom loaded");
+      });
     </script>
 </head>
-<body onload="startSliding()">
+<body>
     @components.Navbar()
     <div class="container">
         <h1 class="sliding-text">The new way of learning is here.</h1>

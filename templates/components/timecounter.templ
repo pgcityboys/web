@@ -1,0 +1,57 @@
+package components
+
+
+
+templ timecounter(){
+<div id="timer"></div>
+<div id="notification"></div>
+<script type="text/javascript">
+    function startSessionTimer() {
+        let sessionTime = localStorage.getItem('sessionTime') ? parseInt(localStorage.getItem('sessionTime')) : 0;
+        setInterval(function() {
+            sessionTime++;
+            localStorage.setItem('sessionTime', sessionTime);
+            const hours = Math.floor(sessionTime / 3600);
+            const minutes = Math.floor((sessionTime % 3600) / 60);
+            const seconds = sessionTime % 60;
+
+            const formattedTime = 
+                (hours > 9 ? hours : "0" + hours) + ":" + 
+                (minutes > 9 ? minutes : "0" + minutes) + ":" + 
+                (seconds > 9 ? seconds : "0" + seconds);
+
+            document.getElementById('timer').textContent = formattedTime;
+        }, 1000);
+    
+        document.getElementById('timer').addEventListener('click', function() {
+            const hours = Math.floor(sessionTime / 3600);
+            const minutes = Math.floor((sessionTime % 3600) / 60);
+            const seconds = sessionTime % 60;
+
+            const formattedTime = 
+                (hours > 9 ? hours : "0" + hours) + ":" + 
+                (minutes > 9 ? minutes : "0" + minutes) + ":" + 
+                (seconds > 9 ? seconds : "0" + seconds);
+
+            showNotification(`You've been studying for ${formattedTime}, maybe it's time for a short break.`);
+        });
+    }
+
+    function showNotification(message) {
+        const notification = document.getElementById('notification');
+        console.log(message)
+        notification.textContent = message;
+        notification.style.display = 'block';
+        notification.style.opacity = 1;
+
+        setTimeout(function() {
+            notification.style.opacity = 0;
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 500);
+        }, 3000);
+    }
+
+    window.onload = startSessionTimer;
+</script>
+}
