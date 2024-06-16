@@ -2,7 +2,7 @@ var meetingsData = {};
 
 var calendar = new Calendar("calendarContainer", "medium",
                     [ "Monday", 3 ],
-                    [ "#9828b5", "#802398", "#ffffff", "#521A57" ],
+                    [ "#d579ec", "#ca5ee6", "#ffffff", "#521A57" ],
                     {
                         days: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",  "Saturday" ],
                         months: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],

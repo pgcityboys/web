@@ -21,6 +21,7 @@
     padding: 20px;
     background: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 2px;
 }
 
 h1 {
@@ -37,7 +38,7 @@ h1 {
     width: calc(100% - 130px); /* Mniejsza szerokość, aby zmieścić przycisk i dropdown */
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 2px;
     box-sizing: border-box; /* Uwzględnienie paddingu w obliczeniach szerokości */
 }
 
@@ -47,19 +48,19 @@ h1 {
     width: 100px; /* Szerokość przycisku */
     padding: 10px;
     border: none;
-    background-color: #ad63c0;
+    background-color: #cd60e9;
     color: white;
     border-radius: 4px;
     cursor: pointer;
 }
 
 #search-button:hover {
-    background-color: #9d2cb9;
+    background-color: #ad63c0;
 }
 
 .addMeetingBtn {
     margin: auto;
-    background-color: #ad63c0;
+    background-color: #d579ec;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -67,14 +68,15 @@ h1 {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 10px 2px;
     cursor: pointer; 
-    border-radius: 8px;
+    border-radius: 2px;
     transition: background-color 0.3s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .addMeetingBtn:hover {
-    background-color: #9d2cb9;
+    background-color: #ad63c0;
 }
 
 .popup-form-input {
@@ -101,3 +103,11 @@ h1 {
     outline: none; /* Usunięcie domyślnego efektu focus */
 }
 
+#calendarContainer-month {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#organizerContainer-list .cjslib-list-placeholder {
+    display: flex !important;
+    justify-content: center
+}
