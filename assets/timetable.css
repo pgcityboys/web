@@ -50,7 +50,7 @@ h1 {
     border: none;
     background-color: #cd60e9;
     color: white;
-    border-radius: 4px;
+    border-radius: 2px;
     cursor: pointer;
 }
 
@@ -85,7 +85,7 @@ h1 {
     margin: 8px 0; /* Margines */
     display: inline-block; /* Wyświetlanie w linii */
     border: 1px solid #ccc; /* Szare obramowanie */
-    border-radius: 4px; /* Zaokrąglone rogi */
+    border-radius: 2px; /* Zaokrąglone rogi */
     box-sizing: border-box; /* Uwzględnij obramowanie i odstępy wewnętrzne w szerokości i wysokości */
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Wewnętrzny cień */
     transition: border-color 0.3s, box-shadow 0.3s; /* Animacja zmiany obramowania i cienia */
