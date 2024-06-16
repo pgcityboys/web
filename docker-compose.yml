@@ -9,7 +9,7 @@ services:
       - studybuddy
 
   userio:
-    image: test:1.0
+    image: lukrzak/userio:1.0
     env_file:
       - .env
     environment:
