@@ -23,7 +23,7 @@ templ userInfo() {
         const user = getUser();
         const userInfoElement = document.getElementById('user-info');
         if (user) {
-          userInfoElement.innerHTML = `<a class="navitem" href='/profile'> ${user}</a>`;
+          userInfoElement.innerHTML = `<span class="navitem">&#128293 3 days</span> <a class="navitem" href='/profile'>Hello ${user}</a>`;
         }
       });
     </script>
