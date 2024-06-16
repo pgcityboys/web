@@ -1,0 +1,41 @@
+package templates
+
+import (
+    "net/http"
+    "web/templates/components"
+)
+
+templ ChatPage() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyOnly</title>
+    <link rel="stylesheet" href="/assets/navbar.css">
+    <link rel="stylesheet" href="/assets/chat.css">
+</head>
+<body>
+    @components.Navbar()
+    <div id="chat-container">
+        <header>
+            <h1>StudyBuddy Chat</h1>
+        </header>
+        <main>
+            <div id="chat-messages"></div>
+        </main>
+        <footer>
+            <form id="chat-form">
+                <input type="text" id="message-input" placeholder="Wpisz wiadomość...">
+                <button type="submit">Wyślij</button>
+            </form>
+        </footer>
+    </div>
+    <script src="/assets/chat.js"></script>
+</body>
+</html>
+}
+
+func HandleChatPage(w http.ResponseWriter, r *http.Request) { 
+    ChatPage().Render(r.Context(), w)
+}
