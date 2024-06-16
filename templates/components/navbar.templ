@@ -5,8 +5,32 @@ templ Navbar() {
         function sendLogin() {
             document.getElementById('popup').classList.remove('active');
             const login = document.getElementById('login').value;
-            localStorage.setItem("user", "\"" + login + "\"");
-            location.reload();
+            const url = "http://localhost:8080/api/v1/users/" + login;
+            fetch(url)
+            .then(res => {
+                if (res.status == 200) {
+                    localStorage.setItem("user", "\"" + login + "\"");
+                    document.getElementById('invalid-login').innerHTML = "";
+                    setTimeout(() => location.reload(), 500);
+                }
+                else {
+                    document.getElementById('invalid-login').innerHTML = "Invalid login";
+                }
+            })
+        }
+
+        function sendRegister() {
+            const login = document.getElementById('login').value;
+            console.log(JSON.stringify({ login: login }));
+            fetch("http://localhost:8080/api/v1/users", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ login: login })
+            })
+
+            setTimeout(() => sendLogin(), 500);
         }
     </script>
 
@@ -29,8 +53,10 @@ templ Navbar() {
             <div class="popup-content">
                 <p>Type your login</p>
                 <input id="login" type="text"/>
-                <br>
-                <button onclick="sendLogin()">Login</button>
+                <br><br>
+                <button onclick="sendLogin()">Login</button><br><br>
+                <button onclick="sendRegister()">No account? Click here to register</button>
+                <p id="invalid-login"></p>
             </div>
         </div>
     </nav>
