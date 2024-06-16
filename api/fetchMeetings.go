@@ -19,6 +19,11 @@ type Meeting struct {
 	Year      int    `json:"year"`
 }
 
+type User struct {
+	Id    int    `json:"id"`
+	Login string `json:"login"`
+}
+
 func getMeetings(category string) ([]Meeting, error) {
 	apiUrl := fmt.Sprintf("http://userio:8080/api/v1/meetings/%s", category)
 	resp, err := http.Get(apiUrl)
@@ -44,6 +49,31 @@ func getMeetings(category string) ([]Meeting, error) {
 	return meetings, nil
 }
 
+func getUser(username string) (*User, error) {
+	apiUrl := fmt.Sprintf("http://userio:8080/api/v1/users/%s", username)
+	resp, err := http.Get(apiUrl)
+	if err != nil {
+		return nil, fmt.Errorf("failed to make request: %v", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("bad status: %s", resp.Status)
+	}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read response body: %v", err)
+	}
+
+	user := &User{}
+	err = json.Unmarshal(body, user)
+	if err != nil {
+		return nil, fmt.Errorf("failed to unmarshal JSON: %v", err)
+	}
+
+	return user, nil
+}
+
 func HandleGetMeeting(w http.ResponseWriter, r *http.Request) {
 	category := r.PathValue("category")
 	meetings, err := getMeetings(category)
@@ -60,6 +90,24 @@ func HandleGetMeeting(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(meetingsJSON)
+}
+
+func HandleGetUser(w http.ResponseWriter, r *http.Request) {
+	login := r.PathValue("login")
+	user, err := getUser(login)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	userJSON, err := json.Marshal(user)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("failed to marshal JSON: %v", err), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(userJSON)
 }
 
 func HandleCreateMeeting(w http.ResponseWriter, r *http.Request) {

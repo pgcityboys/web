@@ -6,7 +6,16 @@ templ Navbar() {
             document.getElementById('popup').classList.remove('active');
             const login = document.getElementById('login').value;
             console.log(login);
-            // TODO call api for loging
+
+            fetch('http://localhost:2137/api/users/' + login, {
+                method: 'GET',
+            }).then(res => {
+                if (res.status === 200) {
+                    alert('Login OK');
+                } else {
+                    alert('Login failed');
+                }
+            })
         }
     </script>
 
